@@ -7,16 +7,25 @@
         * { padding: 0; margin: 0; }
         canvas { background: #eee; display: block; margin: 0 auto; }
     </style>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
 </head>
 <body>
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
-<button id="btn">
+<!-- <button id="btn">Click Me</button> -->
+
+<canvas id="myCanvas"></canvas>
 
 <script>
+    $('#btn').on("click", function() {
+        document.getElementById("myCanvas").webkitRequestFullScreen();
+    });
+
+
     var ballRadius = 10;
-    var canvas = document.getElementById("myCanvas");
-    canvas.webkitRequestFullScreen();
+    var canvas = document.getElementById("myCanvas");    
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    
     var dx = 2;
     var dy = -2;
     function getRandomBit() {
