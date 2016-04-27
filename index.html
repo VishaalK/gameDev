@@ -11,10 +11,12 @@
 <body>
 
 <canvas id="myCanvas" width="480" height="320"></canvas>
+<button id="btn">
 
 <script>
     var ballRadius = 10;
     var canvas = document.getElementById("myCanvas");
+    canvas.webkitRequestFullScreen();
     var dx = 2;
     var dy = -2;
     function getRandomBit() {
