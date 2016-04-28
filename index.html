@@ -25,7 +25,7 @@
     var canvas = document.getElementById("myCanvas");    
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
-    
+
     var dx = 2;
     var dy = -2;
     function getRandomBit() {
@@ -78,12 +78,18 @@
         ctx.closePath();
     }
 
+    function getCatImage(num) {
+        var path = "png/cat/Idle\ (" + num + ").png";
+        return path;
+    }
+
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBackground();
         drawForeground();
 
         drawBall();
+        // drawCat();
         if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
             dx = -dx;
         }
@@ -92,9 +98,26 @@
         }
         x += dx;
         y += dy;
+
+        // requestAnimationFrame(draw);
     }
 
-    setInterval(draw, 10);
+    function drawCat() {
+        arguments.callee.state = ++arguments.callee.state || 0;
+        arguments.callee.state = arguments.callee.state % 10;
+        var state = arguments.callee.state;
+
+        var cat = new Image();
+        cat.onload = function() {
+            draw();
+            ctx.drawImage(cat, 0, 0);
+        };
+
+        cat.src = getCatImage(state+1);
+    }
+
+    // requestAnimationFrame(draw);
+    setInterval(drawCat, 20);
 </script>
 
 </body>
